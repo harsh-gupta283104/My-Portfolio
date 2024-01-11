@@ -1,35 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     console.log("Radhe Radhe");
-    var main=document.querySelector(".main");
-    // console.log(main)
-    var menuBar = document.querySelector('#menuimg');
-    var menu = document.querySelector(".menu-bar"); // Use querySelector to get a single element
-    var close=document.querySelector("#cross");
-    var cursor=document.querySelector("#cursor");
     var outline=document.querySelector("#outline");
-    
-    menuBar.addEventListener("click", function () {
-        menu.classList.add("menuload");
-        document.querySelector('#menuimg').style.visibility = "hidden";
-        if (window.innerWidth >= 1200) {
-            menuBar.style.visibility = "hidden";
-        } else {
-            menuBar.style.visibility = "visible";
-        }
-    });
-    
-    close.addEventListener("click", function () {
-        menu.classList.remove("menuload");
-        if (window.innerWidth >= 1200) {
-            menuBar.style.visibility = "visible";  // Restore visibility
-            console.log("Radhe");
-        } else if (window.innerWidth < 1200) {
-            menuBar.style.visibility = "visible";  // Restore visibility
-        }
-    }, false);
-    
-    
-    
+        
     window.addEventListener("mousemove",function(dets){
         // console.log(dets);
         var posx=dets.x;
@@ -40,10 +12,36 @@ document.addEventListener("DOMContentLoaded", function() {
 
 });
 
-var typed= new typed('#text',{
-    string:["Frontend Developer" , "Youtuber"],
-    typeSpeed:100,
-    backSpeed:100,
-    backDelay:1000,
-    loop:true
-})
+const Words = ['Developer.', 'Programer.', 'Youtuber.', 'Designer.'];
+const dynamicText = document.querySelector(".content h1 span");
+
+
+let wordIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+
+const typeEffect = () => {
+
+    const currentWords = Words[wordIndex];
+    const currentChar = currentWords.substring(0, charIndex);
+    // console.log(currentWords, currentChar);
+    dynamicText.textContent = currentChar;
+    dynamicText.classList.add('stop-blinking');
+    
+    if (!isDeleting && charIndex < currentWords.length) {
+        charIndex++;
+        console.log('Typing:', charIndex);
+        setTimeout(typeEffect, 200);
+    } else if (isDeleting && charIndex > 0) {
+        charIndex--;
+        console.log('Deleting:', charIndex);
+        setTimeout(typeEffect, 100);
+    }else{
+        isDeleting = !isDeleting;
+        wordIndex = !isDeleting ? (wordIndex + 1) % Words.length : wordIndex;
+        setTimeout(typeEffect, 1100)
+        dynamicText.classList.remove('stop-blinking');
+    }
+}
+
+typeEffect();
