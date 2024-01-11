@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Montserrat:wght@100&family=Racing+Sans+One&family=Ramaraja&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Montserrat:wght@100&family=Racing+Sans+One&family=Ramaraja&family=Salsa&display=swap');
 
 :root{
+    --font: "Salsa", cursive;
+    font-weight: 400;
+    font-style: normal;;
     --color: #01d9ff;
 }
 *{
@@ -29,255 +33,155 @@ body, html{
 
 .main{
     width: 100%;
-    height: 100%;
-    /* background-color: red; */
+    height: 100vh;
     background: linear-gradient(to right, black, rgb(2, 2, 45),rgb(0, 0, 61));
-    position: relative;
-}
-.menu-bar{
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    /* visibility: hidden; */
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
-    animation-timing-function: 1;
-    visibility:hidden;
-    backdrop-filter: blur(15px);
-    z-index: 10;
-
-}
-@keyframes menu-loader {
-    from{
-        width: 0%;
-        visibility: visible;
-    }
-    to{
-        width: 100%;
-    }
-}
-.menuload{
-    animation: menu-loader 2s;
-    visibility: visible;
 }
 
 .nav{
     width: 100%;
-    height: 8.5vh;
-    /* background-color: white; */
-    position: fixed;
+    height: 8%;
     display: flex;
     align-items: center;
-    justify-content: end;
-    color: white;
-    z-index: 9;
-}
-.nav span{
-    font-size: 2.5vw;
-    float: left;
-    position: absolute;
-    font-family: 'Ramaraja', serif;
-    left: 0;
-    font-weight: 500;
-    margin-left: 12vw;
-    text-transform: capitalize;
-    background:linear-gradient(to right, white, rgb(194, 191, 191),rgb(188, 188, 188)) ;
-    background-clip: text;
-    color: transparent;
-    margin-top: 17px;
-    cursor: cell;
+    position: fixed;
+    justify-content: space-between;
+    z-index: 2;
+    user-select: none;
 }
 
-.nav span:hover{
+#nav-text{
+    font-size: 2em;
+    font-weight: 600;
+    color: #ffffff;
+    margin-left: 3em;
+    user-select: none;
+}
+#nav-text:hover{
     font-weight: 900;
 }
-.nav #nav-list{
+.nav-list{
+    width: 30vw;
+    margin-right: 2em;
+}
+.list-ul {
     display: flex;
-    position: relative;
-    list-style-type: none;
-    margin-right: 3%;
-    gap: 70px;
-    font-size: 2.7vh;
-    
-}
-#nav-list img{
-    width: 4vh;
-    visibility: hidden;
-    cursor: pointer;
-}
-#nav-list li{
-    text-align: center;
-    width: 2vw;
-    height: 2vw;
-    cursor: pointer;
-    transition: .9s;
-}
-#nav-list li:hover{
-    color: var(--color);
-    text-shadow: 4px 4px 8px var(--color);
-}
-#nav-list li:nth-child(5){
-    margin-right: 1.8em;
-}
-#nav-list li:nth-child(3){
-    margin-right: 1.8em;
-}
-#nav-list li::before{
-    content: '';
-    width: 0px;
-    height: 100%;
-    border-bottom: 0px solid var(--color);
-    position: absolute;
-    bottom: 0;
-}
-#nav-list li:hover::before{
-    width: 80px;
-    height: 4px;
-    border-bottom: 4px solid var(--color);
-    animation: nav-animation 1s  1;
-}
-@keyframes nav-animation {
-    0%{
-        width: 0px;
-        border-bottom: 4px solid var(--color);
-    }
-    100%{
-        width: 80px;
-        border-bottom: 4px solid var(--color);
-    }
-}
-
-@media (max-width:1200px) {
-    .main{
-        width: 100vw;
-        height: 100vh;
-    }
-    .nav span{
-        font-size: 35px;
-    }   
-    #nav-list img{
-        visibility: visible;
-    }
-    #nav-list li{
-        visibility: hidden;
-    }
-    .content .photo{
-        width: 300px;
-        height: 300px;
-        left: 40vw;
-        top: 10%;
-        z-index: 8;
-    }
-    .content{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-    }
-    .small-caption{
-        width: 100vh;
-        position: absolute;
-
-    }
-}
-
-.menu-bar #menu-list li{
+    justify-content: space-between;
+    list-style: none;
+    font-size: 30px;
     color: #fff;
-    font-size: 70px;
-    list-style-type: none;
-    animation: drag .1s 1 2s;
-    cursor: pointer;
-    transition: .5s;
+    font-weight: 400;
+}
+.list-ul li a{
+    position: relative;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 300;
+    transition:.3s ;
 }
 
-.menu-bar #menu-list li:hover{
+.list-ul li a::after{
+    content: '';
+    width: 0%;
+    height: 4px;
+    background: var(--color);
+    position: absolute;
+    left: 0;
+    display: block;
+    box-shadow: 1px 1px 12px var(--color);
+    border-radius: 2%;
+}
+.list-ul li a:hover{
     color: var(--color);
     text-shadow: 1px 1px 12px var(--color);
 }
-.menu-bar #menu-list #cross{
-    width: 75px;
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 15px;
-    cursor: pointer;
-}
-#menu-list li:hover::before{
-    width: 200px;
-    height: 4px;
-    border-bottom: 4px solid var(--color);
-    animation: nav-animation .5s  1;
-    box-shadow: 0px 0px 22px 2px var(--color);   
-}
-#menu-list li::before{
-    content: '';
-    width: 0px;
-    height: 100%;
-    border-bottom: 0px solid var(--color);
-    position: absolute;
-    margin-top: 70px;
-}
-.content{
+.list-ul li a:hover::after{
+    transition: width .3s linear;
     width: 100%;
-    height: 100%;
-    position: relative;
+}
+
+.container{
+    flex-grow: 1;
+    height:100%;
+    background: transparent;
+    margin-top: 4%;
     display: flex;
-    flex-direction: row;
+    position: relative;
+}
+.profile{
+    width: 45%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 2;
 }
 .photo{
-    width: 27vw;
-    height: 27vw;
-    background: linear-gradient(to right, rgb(33, 33, 33), rgb(3, 3, 74),rgb(2, 2, 120));
-    position: absolute;
-    top:30%;
-    border-radius: 50%;
-    margin-left: 1.2%;
-    overflow: hidden;
-    transition: 2s;
-    box-shadow: 0px 0px 222px var(--color),0px 0px 112px #7fecff;
-
-}
-.photo:hover{
-    box-shadow: 0px 0px 200px var(--color), 0px 0px 100px #7fecff;
+    width: 25vw;
+    height: 50vh;
+    border-radius: 60%;
+    overflow:hidden;
+    justify-content: center;
+    box-shadow: 1px 1px 222px var(--color);
+    margin-left: 6%;
 }
 .photo img{
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-    position: absolute;
-    z-index: 98;
+}
+.content{
+    width: 55%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    flex-direction:column;
+    position: relative;
+    z-index: 2;
+    user-select: none;
 }
 
-.small-caption{
-    width: 45vw;
-    height: 25vh;
-    /* background-color: red; */
-    position: absolute;
-    top: 30%;
-    right: 0;
-    display: inline;
-    justify-content: center;
-    text-align: left;
-    z-index: 1;
-
-}
-.small-caption h1{
-    font-size: 3rem;
+.content h1{
+    position: relative;
+    top: 25%;
+    font-size: 4.2em;
     color: #fff;
-    font-weight: 600;
+    font-family: var(--font);
 }
-.small-caption p{
-    font-size: 1.5rem;
-    text-wrap:balance;
-    color: #fff;
-    margin-top: 5%;
-    padding-bottom: 5%;
+.content h1 span{
+    color: var(--color);
+    text-shadow: 1px 1px 12px var(--color);
+    position: relative;
+}
+.content h1 span::before{
+    content: '';
+    width: 1.4%;
+    height: 100%;
+    background-color: var(--color);
+    position: absolute;
+    right: -3%;
+    top: 50%;
+    transform: translateY(-45%);
+    animation: blink .7s infinite;
 }
 
-.small-caption .btn-profile{
+@keyframes blink {
+    50%{
+        opacity: 0;
+    }    
+}
+
+.content p{
+    /* width: 65%; */
+    padding-left:20%;
+    position: relative;
+    top: 28%;
+    font-size: 2em;
+    text-wrap: wrap;
+    color: #fff;
+}
+
+.content .btn-profile{
     width: 18rem;
     height: 3.8rem;
     font-size: 1.6rem;
@@ -286,13 +190,16 @@ body, html{
     margin-top: 5%;
     border: 3px solid var(--color);
     transition: .5s;
+    position: relative;
+    bottom: -30%;
+    
 }
 
-.small-caption .btn-profile:hover{
+.content  .btn-profile:hover{
     box-shadow: 1px 1px 20px var(--color);
     background-color: var(--color);
 }
-.small-caption .btn-profile a{
+.content .btn-profile a{
     width: 18rem;
     height: 3.8rem;
     text-decoration: none;
@@ -302,6 +209,7 @@ body, html{
     align-items: center;
     display: flex;
 }
-.small-caption .btn-profile a:hover{
+
+.content .btn-profile a:hover{
     color: #fff;
 }
